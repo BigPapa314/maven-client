@@ -17,6 +17,7 @@ github = { repository = "BigPapa314/maven-client", workflow="CI" }
 
 [dependencies]
 reqwest = { version = "0.11", features = ["json"] }
+semver_rs = "0.2"
 
 [dev-dependencies]
 tokio = { version = "1", features = ["full"] }
