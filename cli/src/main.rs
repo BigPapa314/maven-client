@@ -1,5 +1,9 @@
 //! A command line interface for the maven-client library.
 
-fn main() {
-    println!("Hello, world!");
+use maven_client::test;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    test().await?;
+    Ok(())
 }

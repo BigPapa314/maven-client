@@ -2,6 +2,13 @@
 name = "maven-client-cli"
 version = "0.1.0"
 edition = "2021"
+authors = ["Thomas Kilian <Thomas-Kilian@gmx.net>"]
+description = "A cli to the maven-client library."
+repository = "https://github.com/BigPapa314/maven-client/tree/master/cli"
+readme = "README.md"
+keywords = ["cli", "maven"]
+categories = ["command-line-utilities"]
+license = "MIT OR Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -9,4 +16,5 @@ edition = "2021"
 github = { repository = "BigPapa314/maven-client", workflow="CI" }
 
 [dependencies]
-
+maven-client = { path ="../lib" }
+tokio = { version = "1", features = ["full"] }

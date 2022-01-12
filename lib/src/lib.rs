@@ -1,10 +1,22 @@
 //! A library for querying maven repositories.
 
+use std::collections::HashMap;
+
+pub async fn test() -> Result<(), Box<dyn std::error::Error>> {
+    let resp = reqwest::get("https://httpbin.org/ip")
+        .await?
+        .json::<HashMap<String, String>>()
+        .await?;
+    println!("{:#?}", resp);
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
+    use crate::*;
+
+    #[tokio::test]
+    async fn do_test() {
+        test().await.expect("Something failed");
     }
 }
