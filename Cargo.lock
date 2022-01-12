@@ -3,9 +3,9 @@
 version = 3
 
 [[package]]
-name = "cli"
+name = "maven-client"
 version = "0.1.0"
 
 [[package]]
-name = "lib"
+name = "maven-client-cli"
 version = "0.1.0"

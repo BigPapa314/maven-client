@@ -1,3 +1,5 @@
+//! A library for querying maven repositories.
+
 #[cfg(test)]
 mod tests {
     #[test]
