@@ -250,4 +250,40 @@ mod tests {
         assert!(project.name.as_ref().unwrap() == "Impartus Activity");
         dbg!(project);
     }
+
+    #[tokio::test]
+    async fn do_test4() {
+        let mvn_metadata = r#"
+        <metadata modelVersion="1.1.0">
+            <groupId>com.helmut-fischer.series-a.display-unit.firmware</groupId>
+            <artifactId>application</artifactId>
+            <versioning>
+                <latest>2.1.0-SNAPSHOT</latest>
+                <release>0.1.0</release>
+                <versions>
+                    <version>1.0.0+3</version>
+                    <version>1.0.1+5</version>
+                    <version>1.0.2+7</version>
+                    <version>1.1.0+6</version>
+                    <version>1.1.1+40</version>
+                    <version>2.0.0+301</version>
+                    <version>0.1.0</version>
+                    <version>0.2.0-SNAPSHOT</version>
+                    <version>1.0.2-SNAPSHOT</version>
+                    <version>1.1.0-SNAPSHOT</version>
+                    <version>1.2.0-SNAPSHOT</version>
+                    <version>2.1.0-SNAPSHOT</version>
+                </versions>
+                <lastUpdated>20220113095524</lastUpdated>
+            </versioning>
+        </metadata>
+        "#;
+        println!("{}", mvn_metadata);
+        let metadata: types::Metadata = from_str(mvn_metadata).expect("Something failed");
+        assert!(
+            metadata.group_id.as_ref().unwrap()
+                == "com.helmut-fischer.series-a.display-unit.firmware"
+        );
+        dbg!(metadata);
+    }
 }

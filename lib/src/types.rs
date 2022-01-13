@@ -88,3 +88,27 @@ pub struct Exclusion {
     pub group_id: Option<String>,
     pub artifact_id: Option<String>,
 }
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct Metadata {
+    pub group_id: Option<String>,
+    pub artifact_id: Option<String>,
+    pub versioning: Versioning,
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct Versioning {
+    pub latest: Option<String>,
+    pub release: Option<String>,
+    pub versions: Versions,
+    pub last_updated: Option<String>,
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct Versions {
+    #[serde(rename = "version")]
+    pub values: Vec<String>,
+}
