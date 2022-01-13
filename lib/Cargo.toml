@@ -17,10 +17,10 @@ github = { repository = "BigPapa314/maven-client", workflow="CI" }
 
 [dependencies]
 reqwest = { version = "0.11", features = ["json"] }
-semver_rs = "0.2"
+semver = "1.0.4"
 serde = { version = "1.0", features = [ "derive" ] }
 quick-xml = { version = "0.22.0", features = [ "serialize" ] }
-
+url = { version = "2.2.2" }
 
 [dev-dependencies]
 tokio = { version = "1", features = ["full"] }

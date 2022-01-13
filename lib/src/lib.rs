@@ -1,9 +1,21 @@
 //! A library for querying maven repositories.
 
+mod tools;
 mod types;
 
-use semver_rs::Version;
+use semver::Version;
 use std::collections::HashMap;
+
+pub async fn print_versions(
+    group: String,
+    artifact: String,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let base = url::Url::parse("https://repo1.maven.org/maven2/")?;
+    let gav = types::Gav::new(group, artifact, None);
+    let meta_data_uri = tools::fetch_metadata(base, gav).await?;
+    dbg!(meta_data_uri);
+    Ok(())
+}
 
 pub async fn test() -> Result<(), Box<dyn std::error::Error>> {
     let resp = reqwest::get("https://httpbin.org/ip")
@@ -14,9 +26,9 @@ pub async fn test() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-fn test2() -> Result<(), semver_rs::Error> {
-    let v1 = Version::new("1.0.0").parse()?;
-    let v2 = Version::new("2.0.1-SNAPSHOT").parse()?;
+fn test2() -> Result<(), semver::Error> {
+    let v1 = Version::parse("1.0.0")?;
+    let v2 = Version::parse("2.0.1-SNAPSHOT")?;
 
     assert!(v1 < v2);
 
@@ -27,6 +39,13 @@ fn test2() -> Result<(), semver_rs::Error> {
 mod tests {
     use crate::*;
     use quick_xml::de::{from_str, DeError};
+
+    #[tokio::test]
+    async fn test_versions() {
+        print_versions("org.yakworks".to_owned(), "commons".to_owned())
+            .await
+            .expect("Something failed");
+    }
 
     #[tokio::test]
     async fn do_test() {

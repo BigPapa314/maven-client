@@ -1,5 +1,8 @@
 //! A library for querying maven repositories.
 
+pub mod gav;
+pub use gav::Gav;
+
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize, PartialEq)]
